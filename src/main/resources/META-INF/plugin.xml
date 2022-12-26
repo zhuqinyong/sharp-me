@@ -1,0 +1,40 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>sharp-me</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Sharp-me</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@sharp-me.com" url="https://www.sharp-me.com">none</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Just a example.<br>
+    <em>most HTML tags may be used</em>
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow factoryClass="sharp.me.sharpme.ui.ToolWinUI" id="SharpMe" anchor="bottom" order="first"/>
+        <typedHandler implementation="sharp.me.sharpme.handler.AutoPopupTypedHandler" order="first"/>
+        <completion.confidence language="any" order="first"
+                               implementationClass="sharp.me.sharpme.confidence.SharpMeCompletionConfidence"/>
+        <completion.contributor language="any" order="first"
+                                implementationClass="sharp.me.sharpme.contributor.SharpMeCompletionContributor"/>
+    </extensions>
+    <application-components>
+        <component>
+            <implementation-class>sharp.me.sharpme.SharpMeCore</implementation-class>
+        </component>
+    </application-components>
+</idea-plugin>
